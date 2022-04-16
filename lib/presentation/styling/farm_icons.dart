@@ -8,4 +8,6 @@ abstract class FarmIcons {
   static const String cultureIcon = '$_mainRoute/culture.png';
   static const String taskIcon = '$_mainRoute/task.png';
   static const String statisticsIcon = '$_mainRoute/statistics.png';
+  static const String searchIcon = '$_mainRoute/search.png';
+  static const String calendarIcon = '$_mainRoute/calendar.png';
 }
