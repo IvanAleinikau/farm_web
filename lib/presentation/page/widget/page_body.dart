@@ -1,5 +1,6 @@
 import 'package:farm_web/common/widgets/menu/farm_menu.dart';
 import 'package:farm_web/common/widgets/menu/type_page.dart';
+import 'package:farm_web/presentation/page/widget/page_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class PageBody extends StatelessWidget {
@@ -23,7 +24,20 @@ class PageBody extends StatelessWidget {
         SizedBox(
           width: size.width * 0.8,
           height: size.height,
-          child: child,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: 80,
+                child: PageAppBar(),
+              ),
+              SizedBox(
+                width: size.width * 0.8,
+                height: size.height - 80,
+                child: child,
+              ),
+            ],
+          ),
         ),
       ],
     );

@@ -1,5 +1,4 @@
 import 'package:farm_web/common/widgets/menu/type_page.dart';
-import 'package:farm_web/presentation/page/widget/page_app_bar.dart';
 import 'package:farm_web/presentation/page/widget/page_body.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +17,6 @@ class _CulturePageState extends State<CulturePage> {
         typePage: const TypePage.culture(),
         child: Column(
           children: const [
-            PageAppBar(),
             Center(
               child: Text('Культуры'),
             ),
