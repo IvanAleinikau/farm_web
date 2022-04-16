@@ -1,4 +1,4 @@
-import 'package:farm_web/presentation/page/main/menu/type_page.dart';
+import 'package:farm_web/common/widgets/menu/type_page.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'navigation_state.freezed.dart';

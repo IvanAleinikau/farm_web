@@ -1,3 +1,5 @@
+import 'package:farm_web/common/widgets/menu/type_page.dart';
+import 'package:farm_web/presentation/page/widget/page_body.dart';
 import 'package:flutter/material.dart';
 
 class CulturePage extends StatefulWidget {
@@ -10,8 +12,13 @@ class CulturePage extends StatefulWidget {
 class _CulturePageState extends State<CulturePage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Культуры'),
+    return const Scaffold(
+      body: PageBody(
+        typePage: TypePage.culture(),
+        child: Center(
+          child: Text('Культуры'),
+        ),
+      ),
     );
   }
 }

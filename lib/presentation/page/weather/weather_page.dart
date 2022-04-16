@@ -1,3 +1,5 @@
+import 'package:farm_web/common/widgets/menu/type_page.dart';
+import 'package:farm_web/presentation/page/widget/page_body.dart';
 import 'package:flutter/material.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -10,8 +12,13 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Погода'),
+    return const Scaffold(
+      body: PageBody(
+        typePage: TypePage.weather(),
+        child: Center(
+          child: Text('Погода'),
+        ),
+      ),
     );
   }
 }

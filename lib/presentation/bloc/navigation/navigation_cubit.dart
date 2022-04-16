@@ -1,5 +1,5 @@
+import 'package:farm_web/common/widgets/menu/type_page.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_state.dart';
-import 'package:farm_web/presentation/page/main/menu/type_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
