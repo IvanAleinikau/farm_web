@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:farm_web/presentation/page/auth/login_page.dart';
+import 'package:farm_web/presentation/page/auth/register_page.dart';
 import 'package:farm_web/presentation/page/culture/culture_page.dart';
 import 'package:farm_web/presentation/page/home/home_page.dart';
 import 'package:farm_web/presentation/page/seeding_plan/seeding_plan_page.dart';
@@ -8,17 +10,21 @@ import 'package:farm_web/presentation/page/weather/weather_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    // AutoRoute(
-    //   path: '/login',
-    //   page: LoginPage,
-    //   name: 'LoginRoute',
-    //   initial: true,
-    // ),
+    CustomRoute(
+      path: '/login',
+      page: LoginPage,
+      name: 'LoginRoute',
+      initial: true,
+    ),
+    CustomRoute(
+      path: '/register',
+      page: RegisterPage,
+      name: 'RegisterRoute',
+    ),
     CustomRoute(
       path: '/home',
       page: HomePage,
       name: 'HomeRoute',
-      initial: true,
     ),
     CustomRoute(
       path: '/weather',

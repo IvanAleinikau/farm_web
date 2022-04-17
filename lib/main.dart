@@ -1,5 +1,8 @@
 import 'package:farm_web/common/constants/ui_constants.dart';
 import 'package:farm_web/di/get_it.dart';
+import 'package:farm_web/presentation/bloc/app_bar/app_bar_cubit.dart';
+import 'package:farm_web/presentation/bloc/auth/login_cubit.dart';
+import 'package:farm_web/presentation/bloc/auth/register_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_cubit.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
@@ -31,6 +34,15 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<HomeCubit>(
           create: (context) => HomeCubit(),
+        ),
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
+        ),
+        BlocProvider<RegisterCubit>(
+          create: (context) => RegisterCubit(),
+        ),
+        BlocProvider<AppBarCubit>(
+          create: (context) => AppBarCubit(),
         ),
       ],
       child: MaterialApp.router(

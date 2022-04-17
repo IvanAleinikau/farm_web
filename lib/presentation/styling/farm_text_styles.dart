@@ -5,6 +5,12 @@ abstract class FarmTextStyles {
 
   static const _ROBOTO = 'RobotoCondensed';
 
+  static const roboto32w400 = TextStyle(
+    fontFamily: _ROBOTO,
+    fontSize: 32,
+    fontWeight: FontWeight.w400,
+  );
+
   static const roboto28w400 = TextStyle(
     fontFamily: _ROBOTO,
     fontSize: 28,
