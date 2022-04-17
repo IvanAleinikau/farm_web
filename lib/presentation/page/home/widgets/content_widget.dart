@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class ContentWidget extends StatefulWidget {
   final String title;
   final double height;
+  final Widget child;
 
   const ContentWidget({
     Key? key,
     required this.title,
     required this.height,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -42,6 +44,10 @@ class _ContentWidgetState extends State<ContentWidget> {
                 ),
               ),
             ),
+          ),
+          SizedBox(
+            height: widget.height - 40,
+            child: widget.child,
           ),
         ],
       ),

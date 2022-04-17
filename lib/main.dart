@@ -1,10 +1,14 @@
 import 'package:farm_web/common/constants/ui_constants.dart';
+import 'package:farm_web/di/get_it.dart';
+import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_cubit.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SetupGetIt.setup();
   runApp(const MyApp());
 }
 
@@ -24,6 +28,9 @@ class _MyAppState extends State<MyApp> {
       providers: [
         BlocProvider<NavigationCubit>(
           create: (context) => NavigationCubit(),
+        ),
+        BlocProvider<HomeCubit>(
+          create: (context) => HomeCubit(),
         ),
       ],
       child: MaterialApp.router(

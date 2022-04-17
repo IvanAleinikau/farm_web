@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   freezed: ^1.0.0
   get_it: ^7.2.0
+  syncfusion_flutter_charts: ^20.1.48
 
 dev_dependencies:
   flutter_test:
