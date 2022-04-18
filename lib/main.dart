@@ -5,6 +5,7 @@ import 'package:farm_web/presentation/bloc/auth/login_cubit.dart';
 import 'package:farm_web/presentation/bloc/auth/register_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_cubit.dart';
+import 'package:farm_web/presentation/bloc/task/task_cubit.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +44,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<AppBarCubit>(
           create: (context) => AppBarCubit(),
+        ),
+        BlocProvider<TaskCubit>(
+          create: (context) => TaskCubit(),
         ),
       ],
       child: MaterialApp.router(

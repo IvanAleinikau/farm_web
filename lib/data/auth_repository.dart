@@ -17,6 +17,12 @@ class AuthRepository {
       if (result.user!.email!.isNotEmpty) {
         result.user?.updateDisplayName(user.name);
         result.user?.updatePhotoURL(user.position);
+        await _user.add({
+          'email': user.email,
+          'password': user.password,
+          'position': user.position,
+          'name': user.name,
+        });
       }
       return 'accountCreated';
     } on FirebaseAuthException catch (e) {
@@ -60,7 +66,7 @@ class AuthRepository {
     return 'singOUt';
   }
 
-  Future<CustomUser> findCustomUser(String email) async {
+  Future<List<CustomUser>> findCustomUsers() async {
     _list = [];
     final collection = await _user.get();
     for (var doc in collection.docs) {
@@ -72,6 +78,6 @@ class AuthRepository {
       );
       _list.add(item);
     }
-    return _list.where((element) => element.email == email).first;
+    return _list;
   }
 }

@@ -6,7 +6,6 @@ import 'package:farm_web/presentation/bloc/app_bar/app_bar_state.dart';
 import 'package:farm_web/presentation/styling/farm_colors.dart';
 import 'package:farm_web/presentation/styling/farm_icons.dart';
 import 'package:farm_web/presentation/styling/farm_text_styles.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +18,6 @@ class PageAppBar extends StatefulWidget {
 
 class _PageAppBarState extends State<PageAppBar> {
   late AppBarCubit _cubit;
-  final User? _user = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
@@ -52,9 +50,12 @@ class _PageAppBarState extends State<PageAppBar> {
           const SizedBox(width: 25),
           InkWell(
             onTap: () {},
-            child: Image.asset(
-              FarmIcons.calendarIcon,
-              height: 26,
+            child: SizedBox(
+              child: Image.asset(
+                FarmIcons.calendarIcon,
+                height: 32,
+                width: 32,
+              ),
             ),
           ),
           const SizedBox(width: 25),

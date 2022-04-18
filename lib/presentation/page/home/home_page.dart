@@ -2,6 +2,10 @@ import 'package:farm_web/common/widgets/menu/type_page.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_state.dart';
 import 'package:farm_web/presentation/page/home/widgets/content_widget.dart';
+import 'package:farm_web/presentation/page/task/tabs/all_tab.dart';
+import 'package:farm_web/presentation/page/task/tabs/completed_tab.dart';
+import 'package:farm_web/presentation/page/task/tabs/today_tab.dart';
+import 'package:farm_web/presentation/page/task/widgets/task_tab_menu.dart';
 import 'package:farm_web/presentation/page/widget/page_body.dart';
 import 'package:farm_web/presentation/styling/farm_colors.dart';
 import 'package:farm_web/presentation/styling/farm_text_styles.dart';
@@ -16,17 +20,33 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late HomeCubit _cubit;
+
+  late TabController _tabController;
+
+  final List<Widget> _tabsPages = [
+    const TodayTab(),
+    const AllTab(),
+    const CompletedTab(),
+  ];
+  late List<String> _tabs = List.filled(_tabsPages.length, '');
 
   @override
   void initState() {
+    _tabController = TabController(vsync: this, length: _tabsPages.length);
     _cubit = HomeCubit();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _tabs = [
+      'Сегодня',
+      'Все',
+      'Выполненные',
+    ];
+
     return BlocConsumer<HomeCubit, HomeState>(
       bloc: _cubit,
       listener: (context, state) {},
@@ -168,7 +188,29 @@ class _HomePageState extends State<HomePage> {
                           child: ContentWidget(
                             title: 'Задачи',
                             height: 274,
-                            child: Container(),
+                            child: Scaffold(
+                              appBar: PreferredSize(
+                                preferredSize: const Size.fromHeight(200),
+                                child: AppBar(
+                                  backgroundColor: Colors.white,
+                                  elevation: 0,
+                                  flexibleSpace: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                                        child: _buildHomeTabs(),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              body: TabBarView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: _tabController,
+                                key: const Key('HOME_TAB_BAR_VIEW_KEY'),
+                                children: _tabsPages,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -223,6 +265,11 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  Widget _buildHomeTabs() => TaskTabMenu(
+        tabs: _tabs,
+        tabController: _tabController,
+      );
 }
 
 class HarvestingData {

@@ -7,6 +7,8 @@ class AuthInput extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final Widget? suffixIcon;
+  final bool readOnly;
 
   const AuthInput({
     Key? key,
@@ -15,6 +17,8 @@ class AuthInput extends StatelessWidget {
     required this.controller,
     this.validator,
     required this.obscureText,
+    this.suffixIcon,
+    this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -23,7 +27,9 @@ class AuthInput extends StatelessWidget {
       padding: padding,
       child: TextFormField(
         cursorColor: Colors.black,
+        readOnly: readOnly,
         decoration: InputDecoration(
+          suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: FarmTextStyles.roboto20w400.copyWith(color: const Color(0xffE0E0E0)),
           border: OutlineInputBorder(
