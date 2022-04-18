@@ -190,14 +190,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                             height: 274,
                             child: Scaffold(
                               appBar: PreferredSize(
-                                preferredSize: const Size.fromHeight(200),
+                                preferredSize: const Size.fromHeight(50),
                                 child: AppBar(
                                   backgroundColor: Colors.white,
                                   elevation: 0,
                                   flexibleSpace: Column(
                                     children: [
+                                      const SizedBox(height: 10),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                                        padding: const EdgeInsets.symmetric(horizontal: 25),
                                         child: _buildHomeTabs(),
                                       ),
                                     ],
@@ -223,7 +224,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           padding: const EdgeInsets.only(top: 24, left: 40, right: 40),
                           child: ContentWidget(
                             title: 'Детали сбора урожая',
-                            height: 274,
+                            height: 300,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10, top: 5),
                               child: SfCartesianChart(
@@ -257,6 +258,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       ),
                     ],
                   ),
+                  const SizedBox(height: 70),
                 ],
               ),
             ),
