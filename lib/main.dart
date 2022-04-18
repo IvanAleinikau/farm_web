@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        //scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         title: APP_NAME,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
