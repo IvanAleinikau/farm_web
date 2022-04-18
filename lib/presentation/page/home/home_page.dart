@@ -2,6 +2,7 @@ import 'package:farm_web/common/widgets/menu/type_page.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_state.dart';
 import 'package:farm_web/presentation/page/home/widgets/content_widget.dart';
+import 'package:farm_web/presentation/page/home/widgets/home_weather_card.dart';
 import 'package:farm_web/presentation/page/task/tabs/all_tab.dart';
 import 'package:farm_web/presentation/page/task/tabs/completed_tab.dart';
 import 'package:farm_web/presentation/page/task/tabs/today_tab.dart';
@@ -66,7 +67,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           child: ContentWidget(
                             title: 'Погода',
                             height: 214,
-                            child: Container(),
+                            child: HomeWeatherCard(
+                              title: 'Сейчас в Бресте',
+                              temperature: state.weather.first.temperature,
+                              iconCode: state.weather.first.iconCode,
+                              temperatureFontSize: 64,
+                              iconScale: 1,
+                            ),
                           ),
                         ),
                       ),
@@ -188,28 +195,31 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           child: ContentWidget(
                             title: 'Задачи',
                             height: 274,
-                            child: Scaffold(
-                              appBar: PreferredSize(
-                                preferredSize: const Size.fromHeight(50),
-                                child: AppBar(
-                                  backgroundColor: Colors.white,
-                                  elevation: 0,
-                                  flexibleSpace: Column(
-                                    children: [
-                                      const SizedBox(height: 10),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                                        child: _buildHomeTabs(),
-                                      ),
-                                    ],
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Scaffold(
+                                appBar: PreferredSize(
+                                  preferredSize: const Size.fromHeight(50),
+                                  child: AppBar(
+                                    backgroundColor: Colors.white,
+                                    elevation: 0,
+                                    flexibleSpace: Column(
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                                          child: _buildHomeTabs(),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              body: TabBarView(
-                                physics: const NeverScrollableScrollPhysics(),
-                                controller: _tabController,
-                                key: const Key('HOME_TAB_BAR_VIEW_KEY_KEY'),
-                                children: _tabsPages,
+                                body: TabBarView(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  controller: _tabController,
+                                  key: const Key('HOME_TAB_BAR_VIEW_KEY_KEY'),
+                                  children: _tabsPages,
+                                ),
                               ),
                             ),
                           ),

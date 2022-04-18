@@ -20,10 +20,14 @@ class _$HomeStateTearOff {
 
   _HomeState call(
       {IncomeExpenses incomeExpenses = emptyIncomeExpenses,
-      VolumeWaste volumeWaste = emptyVolumeWaste}) {
+      VolumeWaste volumeWaste = emptyVolumeWaste,
+      List<Weather> hourlyWeather = const [],
+      List<Weather> weather = const []}) {
     return _HomeState(
       incomeExpenses: incomeExpenses,
       volumeWaste: volumeWaste,
+      hourlyWeather: hourlyWeather,
+      weather: weather,
     );
   }
 }
@@ -35,6 +39,8 @@ const $HomeState = _$HomeStateTearOff();
 mixin _$HomeState {
   IncomeExpenses get incomeExpenses => throw _privateConstructorUsedError;
   VolumeWaste get volumeWaste => throw _privateConstructorUsedError;
+  List<Weather> get hourlyWeather => throw _privateConstructorUsedError;
+  List<Weather> get weather => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeStateCopyWith<HomeState> get copyWith =>
@@ -45,7 +51,11 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({IncomeExpenses incomeExpenses, VolumeWaste volumeWaste});
+  $Res call(
+      {IncomeExpenses incomeExpenses,
+      VolumeWaste volumeWaste,
+      List<Weather> hourlyWeather,
+      List<Weather> weather});
 
   $IncomeExpensesCopyWith<$Res> get incomeExpenses;
   $VolumeWasteCopyWith<$Res> get volumeWaste;
@@ -63,6 +73,8 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   $Res call({
     Object? incomeExpenses = freezed,
     Object? volumeWaste = freezed,
+    Object? hourlyWeather = freezed,
+    Object? weather = freezed,
   }) {
     return _then(_value.copyWith(
       incomeExpenses: incomeExpenses == freezed
@@ -73,6 +85,14 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
           ? _value.volumeWaste
           : volumeWaste // ignore: cast_nullable_to_non_nullable
               as VolumeWaste,
+      hourlyWeather: hourlyWeather == freezed
+          ? _value.hourlyWeather
+          : hourlyWeather // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
+      weather: weather == freezed
+          ? _value.weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
     ));
   }
 
@@ -97,7 +117,11 @@ abstract class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
           _HomeState value, $Res Function(_HomeState) then) =
       __$HomeStateCopyWithImpl<$Res>;
   @override
-  $Res call({IncomeExpenses incomeExpenses, VolumeWaste volumeWaste});
+  $Res call(
+      {IncomeExpenses incomeExpenses,
+      VolumeWaste volumeWaste,
+      List<Weather> hourlyWeather,
+      List<Weather> weather});
 
   @override
   $IncomeExpensesCopyWith<$Res> get incomeExpenses;
@@ -118,6 +142,8 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? incomeExpenses = freezed,
     Object? volumeWaste = freezed,
+    Object? hourlyWeather = freezed,
+    Object? weather = freezed,
   }) {
     return _then(_HomeState(
       incomeExpenses: incomeExpenses == freezed
@@ -128,6 +154,14 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
           ? _value.volumeWaste
           : volumeWaste // ignore: cast_nullable_to_non_nullable
               as VolumeWaste,
+      hourlyWeather: hourlyWeather == freezed
+          ? _value.hourlyWeather
+          : hourlyWeather // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
+      weather: weather == freezed
+          ? _value.weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
     ));
   }
 }
@@ -137,7 +171,9 @@ class __$HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
       {this.incomeExpenses = emptyIncomeExpenses,
-      this.volumeWaste = emptyVolumeWaste});
+      this.volumeWaste = emptyVolumeWaste,
+      this.hourlyWeather = const [],
+      this.weather = const []});
 
   @JsonKey()
   @override
@@ -145,10 +181,16 @@ class _$_HomeState implements _HomeState {
   @JsonKey()
   @override
   final VolumeWaste volumeWaste;
+  @JsonKey()
+  @override
+  final List<Weather> hourlyWeather;
+  @JsonKey()
+  @override
+  final List<Weather> weather;
 
   @override
   String toString() {
-    return 'HomeState(incomeExpenses: $incomeExpenses, volumeWaste: $volumeWaste)';
+    return 'HomeState(incomeExpenses: $incomeExpenses, volumeWaste: $volumeWaste, hourlyWeather: $hourlyWeather, weather: $weather)';
   }
 
   @override
@@ -159,14 +201,19 @@ class _$_HomeState implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other.incomeExpenses, incomeExpenses) &&
             const DeepCollectionEquality()
-                .equals(other.volumeWaste, volumeWaste));
+                .equals(other.volumeWaste, volumeWaste) &&
+            const DeepCollectionEquality()
+                .equals(other.hourlyWeather, hourlyWeather) &&
+            const DeepCollectionEquality().equals(other.weather, weather));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(incomeExpenses),
-      const DeepCollectionEquality().hash(volumeWaste));
+      const DeepCollectionEquality().hash(volumeWaste),
+      const DeepCollectionEquality().hash(hourlyWeather),
+      const DeepCollectionEquality().hash(weather));
 
   @JsonKey(ignore: true)
   @override
@@ -176,12 +223,19 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {IncomeExpenses incomeExpenses, VolumeWaste volumeWaste}) = _$_HomeState;
+      {IncomeExpenses incomeExpenses,
+      VolumeWaste volumeWaste,
+      List<Weather> hourlyWeather,
+      List<Weather> weather}) = _$_HomeState;
 
   @override
   IncomeExpenses get incomeExpenses;
   @override
   VolumeWaste get volumeWaste;
+  @override
+  List<Weather> get hourlyWeather;
+  @override
+  List<Weather> get weather;
   @override
   @JsonKey(ignore: true)
   _$HomeStateCopyWith<_HomeState> get copyWith =>
