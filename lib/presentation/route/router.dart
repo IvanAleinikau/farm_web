@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:farm_web/presentation/page/auth/login_page.dart';
 import 'package:farm_web/presentation/page/auth/register_page.dart';
 import 'package:farm_web/presentation/page/culture/culture_page.dart';
+import 'package:farm_web/presentation/page/culture/widgets/culture_detailed.dart';
 import 'package:farm_web/presentation/page/home/home_page.dart';
 import 'package:farm_web/presentation/page/seeding_plan/seeding_plan_page.dart';
 import 'package:farm_web/presentation/page/task/task_page.dart';
@@ -45,6 +46,11 @@ import 'package:farm_web/presentation/page/weather/weather_page.dart';
       path: '/seeding_plan',
       page: SeedingPlanPage,
       name: 'SeedingPlanRoute',
+    ),
+    CustomRoute(
+      path: '/culture_detailed',
+      page: CultureDetailed,
+      name: 'CultureDetailedRoute',
     ),
   ],
 )
