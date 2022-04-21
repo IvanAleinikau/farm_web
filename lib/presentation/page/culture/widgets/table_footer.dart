@@ -22,7 +22,7 @@ class TableFooter extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Text(
                 title,
                 style: FarmTextStyles.roboto20w400.copyWith(
@@ -31,6 +31,7 @@ class TableFooter extends StatelessWidget {
               ),
             ),
             Expanded(
+              flex: 2,
               child: RichText(
                 text: TextSpan(
                   text: firstAmount.toString(),
@@ -49,6 +50,7 @@ class TableFooter extends StatelessWidget {
               ),
             ),
             Expanded(
+              flex: 2,
               child: RichText(
                 text: TextSpan(
                   text: secondAmount.toString(),

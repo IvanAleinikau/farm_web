@@ -22,6 +22,8 @@ class CultureDetailed extends StatefulWidget {
 }
 
 class _CultureDetailedState extends State<CultureDetailed> {
+  final ValueNotifier<bool> _isEdit = ValueNotifier<bool>(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,12 +57,29 @@ class _CultureDetailedState extends State<CultureDetailed> {
                       child: SizedBox(
                         height: 52,
                         width: 200,
-                        child: FarmButton(
-                          child: const Text(
-                            'Изменить',
-                            style: FarmTextStyles.roboto20w400,
-                          ),
-                          onTap: () {},
+                        child: ValueListenableBuilder(
+                          valueListenable: _isEdit,
+                          builder: (context, bool isEdit, child) {
+                            return isEdit
+                                ? FarmButton(
+                                    child: const Text(
+                                      'Сохранить',
+                                      style: FarmTextStyles.roboto20w400,
+                                    ),
+                                    onTap: () {
+                                      _isEdit.value = false;
+                                    },
+                                  )
+                                : FarmButton(
+                                    child: const Text(
+                                      'Изменить',
+                                      style: FarmTextStyles.roboto20w400,
+                                    ),
+                                    onTap: () {
+                                      _isEdit.value = true;
+                                    },
+                                  );
+                          },
                         ),
                       ),
                     )
@@ -80,111 +99,241 @@ class _CultureDetailedState extends State<CultureDetailed> {
                           const IgnorePointer(
                             child: CultureWidget(),
                           ),
-                          SizedBox(
-                            height: 270,
-                            child: Stack(
-                              children: [
-                                SfCircularChart(
-                                  margin: EdgeInsets.zero,
-                                  legend: Legend(isVisible: true),
-                                  series: <CircularSeries>[
-                                    DoughnutSeries<VolumeData, String>(
-                                      dataSource: [
-                                        VolumeData('Отходы', 1, const Color(0xff732CCE)),
-                                        VolumeData('Собрано', 6, const Color(0xffF58444)),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 152,
+                                width: 152,
+                                child: Stack(
+                                  children: [
+                                    SfCircularChart(
+                                      margin: EdgeInsets.zero,
+                                      series: <CircularSeries>[
+                                        DoughnutSeries<VolumeData, String>(
+                                          dataSource: [
+                                            VolumeData('Отходы', 1, const Color(0xff732CCE)),
+                                            VolumeData('Собрано', 6, const Color(0xffF58444)),
+                                          ],
+                                          pointColorMapper: (VolumeData data, _) => data.color,
+                                          xValueMapper: (VolumeData data, _) => ' ',
+                                          yValueMapper: (VolumeData data, _) => data.y,
+                                          enableTooltip: false,
+                                        )
                                       ],
-                                      pointColorMapper: (VolumeData data, _) => data.color,
-                                      xValueMapper: (VolumeData data, _) =>
-                                          '${data.x}  ${data.y} т',
-                                      yValueMapper: (VolumeData data, _) => data.y,
-                                    )
+                                    ),
+                                    Align(
+                                      alignment: const Alignment(0, 0),
+                                      child: Text(
+                                        '7 т',
+                                        style: FarmTextStyles.roboto14w400.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                Align(
-                                  alignment: const Alignment(-0.42, 0),
-                                  child: Text(
-                                    '7 т',
-                                    style: FarmTextStyles.roboto14w400.copyWith(
-                                      fontWeight: FontWeight.w700,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 16,
+                                          width: 16,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: const Color(0xffF58444),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        const Text(
+                                          'Собрано',
+                                          style: FarmTextStyles.roboto16w400,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        ValueListenableBuilder(
+                                          valueListenable: _isEdit,
+                                          builder: (context, bool isEdit, child) {
+                                            return isEdit
+                                                ? SizedBox(
+                                                    height: 25,
+                                                    width: 35,
+                                                    child: TextFormField(
+                                                      cursorColor: Colors.black,
+                                                      decoration: InputDecoration(
+                                                        contentPadding:
+                                                            const EdgeInsets.only(left: 6),
+                                                        border: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(8.0),
+                                                          borderSide: const BorderSide(
+                                                              color: Color(0xFFB1B1B1)),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(8.0),
+                                                          borderSide:
+                                                              const BorderSide(color: Colors.black),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                : const Text(
+                                                    '6',
+                                                    style: FarmTextStyles.roboto16w400,
+                                                  );
+                                          },
+                                        ),
+                                        const Text(
+                                          ' т',
+                                          style: FarmTextStyles.roboto16w400,
+                                        ),
+                                      ],
                                     ),
-                                    textAlign: TextAlign.left,
-                                  ),
+                                    const SizedBox(height: 25),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 16,
+                                          width: 16,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: const Color(0xff732CCE),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        const Text(
+                                          'Отходы',
+                                          style: FarmTextStyles.roboto16w400,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        ValueListenableBuilder(
+                                          valueListenable: _isEdit,
+                                          builder: (context, bool isEdit, child) {
+                                            return isEdit
+                                                ? SizedBox(
+                                                    height: 25,
+                                                    width: 35,
+                                                    child: TextFormField(
+                                                      cursorColor: Colors.black,
+                                                      decoration: InputDecoration(
+                                                        contentPadding:
+                                                            const EdgeInsets.only(left: 6),
+                                                        border: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(8.0),
+                                                          borderSide: const BorderSide(
+                                                              color: Color(0xFFB1B1B1)),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderRadius: BorderRadius.circular(8.0),
+                                                          borderSide:
+                                                              const BorderSide(color: Colors.black),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                : const Text(
+                                                    '1',
+                                                    style: FarmTextStyles.roboto16w400,
+                                                  );
+                                          },
+                                        ),
+                                        const Text(
+                                          ' т',
+                                          style: FarmTextStyles.roboto16w400,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ],
                       ),
                     ),
                     Expanded(
                       flex: 2,
-                      child: Container(
-                        margin: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: const Color(0xFFE0E0E0)),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Производственные расходы',
-                                style: FarmTextStyles.roboto20w400.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  color: FarmColors.primary,
-                                ),
+                      child: ValueListenableBuilder(
+                        valueListenable: _isEdit,
+                        builder: (context, bool isEdit, child) {
+                          return Container(
+                            margin: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: const Color(0xFFE0E0E0)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Производственные расходы',
+                                    style: FarmTextStyles.roboto20w400.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      color: FarmColors.primary,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  const TableHeader(),
+                                  const SizedBox(height: 4),
+                                  TableItem(
+                                    firstAmount: 40,
+                                    title: 'Семена',
+                                    secondAmount: 140,
+                                    color: const Color(0x3306673E),
+                                    isEdit: isEdit,
+                                  ),
+                                  TableItem(
+                                    firstAmount: 40,
+                                    title: 'Удобрения',
+                                    secondAmount: 140,
+                                    isEdit: isEdit,
+                                  ),
+                                  TableItem(
+                                    firstAmount: 40,
+                                    title: 'Гербициды',
+                                    secondAmount: 140,
+                                    color: const Color(0x3306673E),
+                                    isEdit: isEdit,
+                                  ),
+                                  TableItem(
+                                    firstAmount: 40,
+                                    title: 'Инсектициды',
+                                    secondAmount: 140,
+                                    isEdit: isEdit,
+                                  ),
+                                  TableItem(
+                                    firstAmount: 40,
+                                    title: 'Адъювант',
+                                    secondAmount: 140,
+                                    color: const Color(0x3306673E),
+                                    isEdit: isEdit,
+                                  ),
+                                  TableItem(
+                                    firstAmount: 0,
+                                    title: 'Другое',
+                                    secondAmount: 0,
+                                    isEdit: isEdit,
+                                  ),
+                                  Container(
+                                    height: 1,
+                                    color: const Color(0xFFE0E0E0),
+                                  ),
+                                  const TableFooter(
+                                    title: 'Сумма',
+                                    firstAmount: 200,
+                                    secondAmount: 500,
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 4),
-                              const TableHeader(),
-                              const SizedBox(height: 4),
-                              const TableItem(
-                                firstAmount: 40,
-                                title: 'Семена',
-                                secondAmount: 140,
-                                color: Color(0x3306673E),
-                              ),
-                              const TableItem(
-                                firstAmount: 40,
-                                title: 'Удобрения',
-                                secondAmount: 140,
-                              ),
-                              const TableItem(
-                                firstAmount: 40,
-                                title: 'Гербициды',
-                                secondAmount: 140,
-                                color: Color(0x3306673E),
-                              ),
-                              const TableItem(
-                                firstAmount: 40,
-                                title: 'Инсектициды',
-                                secondAmount: 140,
-                              ),
-                              const TableItem(
-                                firstAmount: 40,
-                                title: 'Адъювант',
-                                secondAmount: 140,
-                                color: Color(0x3306673E),
-                              ),
-                              const TableItem(
-                                firstAmount: 0,
-                                title: 'Другое',
-                                secondAmount: 0,
-                              ),
-                              Container(
-                                height: 1,
-                                color: const Color(0xFFE0E0E0),
-                              ),
-                              const TableFooter(
-                                title: 'Сумма',
-                                firstAmount: 200,
-                                secondAmount: 500,
-                              ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],

@@ -69,7 +69,7 @@ class _CultureWidgetState extends State<CultureWidget> {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 6),
                   child: Text(
-                    'Рассчётный объём урожая',
+                    'Расчётный объём урожая',
                     style: FarmTextStyles.roboto14w400,
                   ),
                 ),
