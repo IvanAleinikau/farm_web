@@ -3,11 +3,13 @@ import 'package:farm_web/di/get_it.dart';
 import 'package:farm_web/presentation/bloc/app_bar/app_bar_cubit.dart';
 import 'package:farm_web/presentation/bloc/auth/login_cubit.dart';
 import 'package:farm_web/presentation/bloc/auth/register_cubit.dart';
+import 'package:farm_web/presentation/bloc/culture/culture_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_cubit.dart';
 import 'package:farm_web/presentation/bloc/task/task_cubit.dart';
 import 'package:farm_web/presentation/bloc/weather/weather_cubit.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,14 +54,25 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<WeatherCubit>(
           create: (context) => WeatherCubit(),
         ),
+        BlocProvider<CultureCubit>(
+          create: (context) => CultureCubit(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        //scrollBehavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        scrollBehavior: MyCustomScrollBehavior().copyWith(scrollbars: false),
         title: APP_NAME,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

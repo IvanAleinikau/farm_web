@@ -23,6 +23,8 @@ class _$CultureTearOff {
       required String cultureName,
       required double plantedArea,
       required double estimatedYield,
+      required double estimatedCost,
+      required double profit,
       required double collectedInPercentage,
       required double collected,
       required double waste,
@@ -43,6 +45,8 @@ class _$CultureTearOff {
       cultureName: cultureName,
       plantedArea: plantedArea,
       estimatedYield: estimatedYield,
+      estimatedCost: estimatedCost,
+      profit: profit,
       collectedInPercentage: collectedInPercentage,
       collected: collected,
       waste: waste,
@@ -71,6 +75,8 @@ mixin _$Culture {
   String get cultureName => throw _privateConstructorUsedError;
   double get plantedArea => throw _privateConstructorUsedError;
   double get estimatedYield => throw _privateConstructorUsedError;
+  double get estimatedCost => throw _privateConstructorUsedError;
+  double get profit => throw _privateConstructorUsedError;
   double get collectedInPercentage => throw _privateConstructorUsedError;
   double get collected => throw _privateConstructorUsedError;
   double get waste => throw _privateConstructorUsedError;
@@ -100,6 +106,8 @@ abstract class $CultureCopyWith<$Res> {
       String cultureName,
       double plantedArea,
       double estimatedYield,
+      double estimatedCost,
+      double profit,
       double collectedInPercentage,
       double collected,
       double waste,
@@ -131,6 +139,8 @@ class _$CultureCopyWithImpl<$Res> implements $CultureCopyWith<$Res> {
     Object? cultureName = freezed,
     Object? plantedArea = freezed,
     Object? estimatedYield = freezed,
+    Object? estimatedCost = freezed,
+    Object? profit = freezed,
     Object? collectedInPercentage = freezed,
     Object? collected = freezed,
     Object? waste = freezed,
@@ -163,6 +173,14 @@ class _$CultureCopyWithImpl<$Res> implements $CultureCopyWith<$Res> {
       estimatedYield: estimatedYield == freezed
           ? _value.estimatedYield
           : estimatedYield // ignore: cast_nullable_to_non_nullable
+              as double,
+      estimatedCost: estimatedCost == freezed
+          ? _value.estimatedCost
+          : estimatedCost // ignore: cast_nullable_to_non_nullable
+              as double,
+      profit: profit == freezed
+          ? _value.profit
+          : profit // ignore: cast_nullable_to_non_nullable
               as double,
       collectedInPercentage: collectedInPercentage == freezed
           ? _value.collectedInPercentage
@@ -238,6 +256,8 @@ abstract class _$CultureCopyWith<$Res> implements $CultureCopyWith<$Res> {
       String cultureName,
       double plantedArea,
       double estimatedYield,
+      double estimatedCost,
+      double profit,
       double collectedInPercentage,
       double collected,
       double waste,
@@ -270,6 +290,8 @@ class __$CultureCopyWithImpl<$Res> extends _$CultureCopyWithImpl<$Res>
     Object? cultureName = freezed,
     Object? plantedArea = freezed,
     Object? estimatedYield = freezed,
+    Object? estimatedCost = freezed,
+    Object? profit = freezed,
     Object? collectedInPercentage = freezed,
     Object? collected = freezed,
     Object? waste = freezed,
@@ -302,6 +324,14 @@ class __$CultureCopyWithImpl<$Res> extends _$CultureCopyWithImpl<$Res>
       estimatedYield: estimatedYield == freezed
           ? _value.estimatedYield
           : estimatedYield // ignore: cast_nullable_to_non_nullable
+              as double,
+      estimatedCost: estimatedCost == freezed
+          ? _value.estimatedCost
+          : estimatedCost // ignore: cast_nullable_to_non_nullable
+              as double,
+      profit: profit == freezed
+          ? _value.profit
+          : profit // ignore: cast_nullable_to_non_nullable
               as double,
       collectedInPercentage: collectedInPercentage == freezed
           ? _value.collectedInPercentage
@@ -375,6 +405,8 @@ class _$_Culture implements _Culture {
       required this.cultureName,
       required this.plantedArea,
       required this.estimatedYield,
+      required this.estimatedCost,
+      required this.profit,
       required this.collectedInPercentage,
       required this.collected,
       required this.waste,
@@ -399,6 +431,10 @@ class _$_Culture implements _Culture {
   final double plantedArea;
   @override
   final double estimatedYield;
+  @override
+  final double estimatedCost;
+  @override
+  final double profit;
   @override
   final double collectedInPercentage;
   @override
@@ -432,7 +468,7 @@ class _$_Culture implements _Culture {
 
   @override
   String toString() {
-    return 'Culture(id: $id, cultureName: $cultureName, plantedArea: $plantedArea, estimatedYield: $estimatedYield, collectedInPercentage: $collectedInPercentage, collected: $collected, waste: $waste, currentSeeds: $currentSeeds, budgetSeeds: $budgetSeeds, currentFertilizers: $currentFertilizers, budgetFertilizers: $budgetFertilizers, currentHerbicides: $currentHerbicides, budgetHerbicides: $budgetHerbicides, currentInsecticides: $currentInsecticides, budgetInsecticides: $budgetInsecticides, currentAdjuvant: $currentAdjuvant, budgetAdjuvant: $budgetAdjuvant, currentOther: $currentOther, budgetOther: $budgetOther)';
+    return 'Culture(id: $id, cultureName: $cultureName, plantedArea: $plantedArea, estimatedYield: $estimatedYield, estimatedCost: $estimatedCost, profit: $profit, collectedInPercentage: $collectedInPercentage, collected: $collected, waste: $waste, currentSeeds: $currentSeeds, budgetSeeds: $budgetSeeds, currentFertilizers: $currentFertilizers, budgetFertilizers: $budgetFertilizers, currentHerbicides: $currentHerbicides, budgetHerbicides: $budgetHerbicides, currentInsecticides: $currentInsecticides, budgetInsecticides: $budgetInsecticides, currentAdjuvant: $currentAdjuvant, budgetAdjuvant: $budgetAdjuvant, currentOther: $currentOther, budgetOther: $budgetOther)';
   }
 
   @override
@@ -447,6 +483,9 @@ class _$_Culture implements _Culture {
                 .equals(other.plantedArea, plantedArea) &&
             const DeepCollectionEquality()
                 .equals(other.estimatedYield, estimatedYield) &&
+            const DeepCollectionEquality()
+                .equals(other.estimatedCost, estimatedCost) &&
+            const DeepCollectionEquality().equals(other.profit, profit) &&
             const DeepCollectionEquality()
                 .equals(other.collectedInPercentage, collectedInPercentage) &&
             const DeepCollectionEquality().equals(other.collected, collected) &&
@@ -484,6 +523,8 @@ class _$_Culture implements _Culture {
         const DeepCollectionEquality().hash(cultureName),
         const DeepCollectionEquality().hash(plantedArea),
         const DeepCollectionEquality().hash(estimatedYield),
+        const DeepCollectionEquality().hash(estimatedCost),
+        const DeepCollectionEquality().hash(profit),
         const DeepCollectionEquality().hash(collectedInPercentage),
         const DeepCollectionEquality().hash(collected),
         const DeepCollectionEquality().hash(waste),
@@ -513,6 +554,8 @@ abstract class _Culture implements Culture {
       required String cultureName,
       required double plantedArea,
       required double estimatedYield,
+      required double estimatedCost,
+      required double profit,
       required double collectedInPercentage,
       required double collected,
       required double waste,
@@ -537,6 +580,10 @@ abstract class _Culture implements Culture {
   double get plantedArea;
   @override
   double get estimatedYield;
+  @override
+  double get estimatedCost;
+  @override
+  double get profit;
   @override
   double get collectedInPercentage;
   @override

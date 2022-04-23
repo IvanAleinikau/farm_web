@@ -201,6 +201,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 appBar: PreferredSize(
                                   preferredSize: const Size.fromHeight(50),
                                   child: AppBar(
+                                    automaticallyImplyLeading: false,
                                     backgroundColor: Colors.white,
                                     elevation: 0,
                                     flexibleSpace: Column(
