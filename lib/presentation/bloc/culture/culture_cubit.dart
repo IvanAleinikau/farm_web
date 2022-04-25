@@ -20,7 +20,7 @@ class CultureCubit extends Cubit<CultureState> {
     if (result == 'successfully') {
       emit(state.copyWith(cultureCreated: true));
       Future.delayed(const Duration(seconds: 1), () {
-        // _fetchTasks();
+        _fetchCulture();
       });
     }
     emit(state.copyWith(cultureCreated: false));

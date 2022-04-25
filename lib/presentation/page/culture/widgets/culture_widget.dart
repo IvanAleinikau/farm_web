@@ -1,11 +1,18 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:farm_web/presentation/bloc/culture_detailed/culture_detailed_cubit.dart';
+import 'package:farm_web/presentation/model/culture.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
 import 'package:farm_web/presentation/styling/farm_colors.dart';
 import 'package:farm_web/presentation/styling/farm_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CultureWidget extends StatefulWidget {
-  const CultureWidget({Key? key}) : super(key: key);
+  final Culture culture;
+
+  const CultureWidget({
+    Key? key,
+    required this.culture,
+  }) : super(key: key);
 
   @override
   State<CultureWidget> createState() => _CultureWidgetState();
@@ -16,7 +23,8 @@ class _CultureWidgetState extends State<CultureWidget> {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () => context.router.navigate(const CultureDetailedRoute()),
+      onTap: () => context.router
+          .navigate(CultureDetailedRoute(cubit: CultureDetailedCubit(widget.culture))),
       child: Container(
         margin: const EdgeInsets.all(12),
         padding: const EdgeInsets.fromLTRB(16, 8, 9, 27),
@@ -29,7 +37,7 @@ class _CultureWidgetState extends State<CultureWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Морковь, Шантане 2461',
+              widget.culture.cultureName,
               style: FarmTextStyles.roboto20w400.copyWith(
                 fontWeight: FontWeight.w700,
                 color: FarmColors.primary,
@@ -48,10 +56,10 @@ class _CultureWidgetState extends State<CultureWidget> {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(
-                    text: '20 ',
+                  text: TextSpan(
+                    text: '${widget.culture.plantedArea} ',
                     style: FarmTextStyles.roboto32w400,
-                    children: [
+                    children: const [
                       TextSpan(
                         text: 'ар',
                         style: FarmTextStyles.roboto20w400,
@@ -74,10 +82,10 @@ class _CultureWidgetState extends State<CultureWidget> {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(
-                    text: '17 ',
+                  text: TextSpan(
+                    text: '${widget.culture.estimatedYield * widget.culture.plantedArea} ',
                     style: FarmTextStyles.roboto32w400,
-                    children: [
+                    children: const [
                       TextSpan(
                         text: 'т',
                         style: FarmTextStyles.roboto20w400,
@@ -100,10 +108,11 @@ class _CultureWidgetState extends State<CultureWidget> {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(
-                    text: '35 ',
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    text: '${widget.culture.collectedInPercentage.toStringAsFixed(2)} ',
                     style: FarmTextStyles.roboto32w400,
-                    children: [
+                    children: const [
                       TextSpan(
                         text: '%',
                         style: FarmTextStyles.roboto20w400,

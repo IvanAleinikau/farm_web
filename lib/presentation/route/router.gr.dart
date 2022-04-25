@@ -13,6 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:flutter/material.dart' as _i10;
 
+import '../bloc/culture_detailed/culture_detailed_cubit.dart' as _i11;
 import '../page/auth/login_page.dart' as _i1;
 import '../page/auth/register_page.dart' as _i2;
 import '../page/culture/culture_page.dart' as _i6;
@@ -78,9 +79,10 @@ class AppRouter extends _i9.RootStackRouter {
           barrierDismissible: false);
     },
     CultureDetailedRoute.name: (routeData) {
+      final args = routeData.argsAs<CultureDetailedRouteArgs>();
       return _i9.CustomPage<dynamic>(
           routeData: routeData,
-          child: const _i8.CultureDetailed(),
+          child: _i8.CultureDetailed(key: args.key, cubit: args.cubit),
           opaque: true,
           barrierDismissible: false);
     }
@@ -160,9 +162,25 @@ class SeedingPlanRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.CultureDetailed]
-class CultureDetailedRoute extends _i9.PageRouteInfo<void> {
-  const CultureDetailedRoute()
-      : super(CultureDetailedRoute.name, path: '/culture_detailed');
+class CultureDetailedRoute extends _i9.PageRouteInfo<CultureDetailedRouteArgs> {
+  CultureDetailedRoute(
+      {_i10.Key? key, required _i11.CultureDetailedCubit cubit})
+      : super(CultureDetailedRoute.name,
+            path: '/culture_detailed',
+            args: CultureDetailedRouteArgs(key: key, cubit: cubit));
 
   static const String name = 'CultureDetailedRoute';
+}
+
+class CultureDetailedRouteArgs {
+  const CultureDetailedRouteArgs({this.key, required this.cubit});
+
+  final _i10.Key? key;
+
+  final _i11.CultureDetailedCubit cubit;
+
+  @override
+  String toString() {
+    return 'CultureDetailedRouteArgs{key: $key, cubit: $cubit}';
+  }
 }

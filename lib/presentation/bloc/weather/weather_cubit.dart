@@ -16,6 +16,5 @@ class WeatherCubit extends Cubit<WeatherState> {
     final Weather weather = await _repository.fetchCurrentWeather(city: FARM_CITY);
     final List<Weather> hourlyWeather = await _repository.fetchHourlyWeather(city: FARM_CITY);
     emit(state.copyWith(weather: [weather], hourlyWeather: hourlyWeather));
-    print(state.weather.first.iconCode);
   }
 }

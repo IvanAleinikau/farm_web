@@ -4,10 +4,12 @@ import 'package:farm_web/presentation/bloc/app_bar/app_bar_cubit.dart';
 import 'package:farm_web/presentation/bloc/auth/login_cubit.dart';
 import 'package:farm_web/presentation/bloc/auth/register_cubit.dart';
 import 'package:farm_web/presentation/bloc/culture/culture_cubit.dart';
+import 'package:farm_web/presentation/bloc/culture_detailed/culture_detailed_cubit.dart';
 import 'package:farm_web/presentation/bloc/home/home_cubit.dart';
 import 'package:farm_web/presentation/bloc/navigation/navigation_cubit.dart';
 import 'package:farm_web/presentation/bloc/task/task_cubit.dart';
 import 'package:farm_web/presentation/bloc/weather/weather_cubit.dart';
+import 'package:farm_web/presentation/model/culture.dart';
 import 'package:farm_web/presentation/route/router.gr.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +58,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider<CultureCubit>(
           create: (context) => CultureCubit(),
+        ),
+        BlocProvider<CultureDetailedCubit>(
+          create: (context) => CultureDetailedCubit(emptyCulture),
         ),
       ],
       child: MaterialApp.router(

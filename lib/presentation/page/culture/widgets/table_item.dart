@@ -7,6 +7,7 @@ class TableItem extends StatefulWidget {
   final double firstAmount;
   final double secondAmount;
   final bool isEdit;
+  final TextEditingController controller;
 
   const TableItem({
     Key? key,
@@ -15,6 +16,7 @@ class TableItem extends StatefulWidget {
     required this.firstAmount,
     required this.secondAmount,
     this.isEdit = false,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -56,6 +58,7 @@ class _TableItemState extends State<TableItem> {
                   : Padding(
                       padding: const EdgeInsets.only(right: 34, top: 5, bottom: 5),
                       child: TextFormField(
+                        controller: widget.controller,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           suffixIcon: const SizedBox(

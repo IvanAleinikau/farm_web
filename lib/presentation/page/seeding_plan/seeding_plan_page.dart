@@ -87,7 +87,7 @@ class _SeedingPlanPageState extends State<SeedingPlanPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: SingleChildScrollView(
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 controller: ScrollController(keepScrollOffset: false),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
