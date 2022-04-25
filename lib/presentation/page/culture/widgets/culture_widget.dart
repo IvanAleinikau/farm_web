@@ -23,8 +23,8 @@ class _CultureWidgetState extends State<CultureWidget> {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () => context.router
-          .navigate(CultureDetailedRoute(cubit: CultureDetailedCubit(widget.culture))),
+      onTap: () =>
+          context.router.push(CultureDetailedRoute(cubit: CultureDetailedCubit(widget.culture))),
       child: Container(
         margin: const EdgeInsets.all(12),
         padding: const EdgeInsets.fromLTRB(16, 8, 9, 27),
