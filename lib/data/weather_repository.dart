@@ -10,6 +10,7 @@ class WeatherRepository {
     var url = Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$_apiKey&units=metric');
     final response = await http.post(url);
+    print(response.body);
     if (response.statusCode == 200) {
       return Weather.fromJson(json.decode(response.body));
     } else {

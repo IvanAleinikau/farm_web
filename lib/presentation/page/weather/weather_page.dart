@@ -6,6 +6,7 @@ import 'package:farm_web/presentation/page/widget/page_body.dart';
 import 'package:farm_web/presentation/styling/farm_colors.dart';
 import 'package:farm_web/presentation/styling/farm_icons.dart';
 import 'package:farm_web/presentation/styling/farm_text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -133,6 +134,34 @@ class _WeatherPageState extends State<WeatherPage> {
                         ],
                       ),
                     ),
+                    Row(
+                      children: [
+                        _WeatherItem.icon(
+                          title: 'Влажность',
+                          icon: CupertinoIcons.drop_fill,
+                          content: '${state.weather.first.humidity}%',
+                        ),
+                        const SizedBox(width: 10),
+                        _WeatherItem.icon(
+                          title: 'Давление',
+                          icon: CupertinoIcons.thermometer,
+                          content: '${state.weather.first.pressure} мм рт. ст.',
+                        ),
+                        const SizedBox(width: 10),
+                        _WeatherItem.icon(
+                          title: 'Восход солнца',
+                          icon: CupertinoIcons.sunrise,
+                          content: state.weather.first.sunrise,
+                        ),
+                        const SizedBox(width: 10),
+                        _WeatherItem.icon(
+                          title: 'Заход солнца',
+                          icon: CupertinoIcons.sunset,
+                          content: state.weather.first.sunset,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 70),
                   ],
                 ),
               ),
@@ -140,6 +169,76 @@ class _WeatherPageState extends State<WeatherPage> {
           ),
         );
       },
+    );
+  }
+}
+
+class _WeatherItem extends StatelessWidget {
+  final String title;
+  final String content;
+  final IconData? icon;
+
+  final bool withIcon;
+
+  const _WeatherItem({
+    Key? key,
+    required this.title,
+    this.icon,
+    required this.content,
+  })  : withIcon = false,
+        super(key: key);
+
+  const _WeatherItem.icon({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.content,
+  })  : withIcon = true,
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 150,
+      width: 170,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFFE0E0E0)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 12, top: 8),
+            child: Row(
+              children: [
+                if (withIcon) ...[
+                  Icon(
+                    icon,
+                    color: const Color(0xFFA0A0A0),
+                    size: 24,
+                  ),
+                  const SizedBox(width: 10),
+                ],
+                Text(
+                  title,
+                  style: FarmTextStyles.roboto16w400,
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 12, top: 8, right: 12),
+              child: Text(
+                content,
+                style: FarmTextStyles.roboto32w400,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

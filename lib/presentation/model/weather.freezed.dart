@@ -23,13 +23,21 @@ class _$WeatherTearOff {
       required int temperature,
       required String iconCode,
       required String description,
-      required DateTime time}) {
+      required DateTime time,
+      int pressure = 0,
+      int humidity = 0,
+      String sunrise = '',
+      String sunset = ''}) {
     return _Weather(
       cityName: cityName,
       temperature: temperature,
       iconCode: iconCode,
       description: description,
       time: time,
+      pressure: pressure,
+      humidity: humidity,
+      sunrise: sunrise,
+      sunset: sunset,
     );
   }
 }
@@ -44,6 +52,10 @@ mixin _$Weather {
   String get iconCode => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime get time => throw _privateConstructorUsedError;
+  int get pressure => throw _privateConstructorUsedError;
+  int get humidity => throw _privateConstructorUsedError;
+  String get sunrise => throw _privateConstructorUsedError;
+  String get sunset => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
@@ -58,7 +70,11 @@ abstract class $WeatherCopyWith<$Res> {
       int temperature,
       String iconCode,
       String description,
-      DateTime time});
+      DateTime time,
+      int pressure,
+      int humidity,
+      String sunrise,
+      String sunset});
 }
 
 /// @nodoc
@@ -76,6 +92,10 @@ class _$WeatherCopyWithImpl<$Res> implements $WeatherCopyWith<$Res> {
     Object? iconCode = freezed,
     Object? description = freezed,
     Object? time = freezed,
+    Object? pressure = freezed,
+    Object? humidity = freezed,
+    Object? sunrise = freezed,
+    Object? sunset = freezed,
   }) {
     return _then(_value.copyWith(
       cityName: cityName == freezed
@@ -98,6 +118,22 @@ class _$WeatherCopyWithImpl<$Res> implements $WeatherCopyWith<$Res> {
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      pressure: pressure == freezed
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
+      humidity: humidity == freezed
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      sunrise: sunrise == freezed
+          ? _value.sunrise
+          : sunrise // ignore: cast_nullable_to_non_nullable
+              as String,
+      sunset: sunset == freezed
+          ? _value.sunset
+          : sunset // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -112,7 +148,11 @@ abstract class _$WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
       int temperature,
       String iconCode,
       String description,
-      DateTime time});
+      DateTime time,
+      int pressure,
+      int humidity,
+      String sunrise,
+      String sunset});
 }
 
 /// @nodoc
@@ -131,6 +171,10 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
     Object? iconCode = freezed,
     Object? description = freezed,
     Object? time = freezed,
+    Object? pressure = freezed,
+    Object? humidity = freezed,
+    Object? sunrise = freezed,
+    Object? sunset = freezed,
   }) {
     return _then(_Weather(
       cityName: cityName == freezed
@@ -153,6 +197,22 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      pressure: pressure == freezed
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
+      humidity: humidity == freezed
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      sunrise: sunrise == freezed
+          ? _value.sunrise
+          : sunrise // ignore: cast_nullable_to_non_nullable
+              as String,
+      sunset: sunset == freezed
+          ? _value.sunset
+          : sunset // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -165,7 +225,11 @@ class _$_Weather implements _Weather {
       required this.temperature,
       required this.iconCode,
       required this.description,
-      required this.time});
+      required this.time,
+      this.pressure = 0,
+      this.humidity = 0,
+      this.sunrise = '',
+      this.sunset = ''});
 
   @override
   final String cityName;
@@ -177,10 +241,22 @@ class _$_Weather implements _Weather {
   final String description;
   @override
   final DateTime time;
+  @JsonKey()
+  @override
+  final int pressure;
+  @JsonKey()
+  @override
+  final int humidity;
+  @JsonKey()
+  @override
+  final String sunrise;
+  @JsonKey()
+  @override
+  final String sunset;
 
   @override
   String toString() {
-    return 'Weather(cityName: $cityName, temperature: $temperature, iconCode: $iconCode, description: $description, time: $time)';
+    return 'Weather(cityName: $cityName, temperature: $temperature, iconCode: $iconCode, description: $description, time: $time, pressure: $pressure, humidity: $humidity, sunrise: $sunrise, sunset: $sunset)';
   }
 
   @override
@@ -194,7 +270,11 @@ class _$_Weather implements _Weather {
             const DeepCollectionEquality().equals(other.iconCode, iconCode) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.time, time));
+            const DeepCollectionEquality().equals(other.time, time) &&
+            const DeepCollectionEquality().equals(other.pressure, pressure) &&
+            const DeepCollectionEquality().equals(other.humidity, humidity) &&
+            const DeepCollectionEquality().equals(other.sunrise, sunrise) &&
+            const DeepCollectionEquality().equals(other.sunset, sunset));
   }
 
   @override
@@ -204,7 +284,11 @@ class _$_Weather implements _Weather {
       const DeepCollectionEquality().hash(temperature),
       const DeepCollectionEquality().hash(iconCode),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(time));
+      const DeepCollectionEquality().hash(time),
+      const DeepCollectionEquality().hash(pressure),
+      const DeepCollectionEquality().hash(humidity),
+      const DeepCollectionEquality().hash(sunrise),
+      const DeepCollectionEquality().hash(sunset));
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +302,11 @@ abstract class _Weather implements Weather {
       required int temperature,
       required String iconCode,
       required String description,
-      required DateTime time}) = _$_Weather;
+      required DateTime time,
+      int pressure,
+      int humidity,
+      String sunrise,
+      String sunset}) = _$_Weather;
 
   @override
   String get cityName;
@@ -230,6 +318,14 @@ abstract class _Weather implements Weather {
   String get description;
   @override
   DateTime get time;
+  @override
+  int get pressure;
+  @override
+  int get humidity;
+  @override
+  String get sunrise;
+  @override
+  String get sunset;
   @override
   @JsonKey(ignore: true)
   _$WeatherCopyWith<_Weather> get copyWith =>
