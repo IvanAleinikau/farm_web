@@ -6,7 +6,6 @@ class AuthRepository {
   final _user = FirebaseFirestore.instance.collection('user');
   FirebaseAuth auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
-  late List<CustomUser> _list = [];
 
   Future<String> createAccount({required CustomUser user}) async {
     try {
@@ -67,7 +66,7 @@ class AuthRepository {
   }
 
   Future<List<CustomUser>> findCustomUsers() async {
-    _list = [];
+    final List<CustomUser> _list = [];
     final collection = await _user.get();
     for (var doc in collection.docs) {
       CustomUser item = CustomUser(
