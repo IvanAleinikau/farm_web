@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {
-  WeatherCubit() : super(const WeatherState()) {
+  WeatherCubit() : super(WeatherState(weather: [emptyWeather])) {
     onInit();
   }
 

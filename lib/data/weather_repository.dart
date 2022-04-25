@@ -4,7 +4,7 @@ import 'package:farm_web/presentation/model/weather.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherRepository {
-  static dynamic _apiKey = "4351b2c890c571031d66882b9e9c429d";
+  final _apiKey = "4351b2c890c571031d66882b9e9c429d";
 
   Future<Weather> fetchCurrentWeather({required String city}) async {
     var url = Uri.parse(

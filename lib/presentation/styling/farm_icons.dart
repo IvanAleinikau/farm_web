@@ -15,4 +15,6 @@ abstract class FarmIcons {
   static const String editIcon = '$_mainRoute/edit.png';
   static const String trashIcon = '$_mainRoute/trash.png';
   static const String backIcon = '$_mainRoute/back.png';
+  static const String arrowLeftIcon = '$_mainRoute/arrow_left.png';
+  static const String arrowRightIcon = '$_mainRoute/arrow_right.png';
 }
